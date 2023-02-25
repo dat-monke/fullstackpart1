@@ -7,6 +7,7 @@ const Header = (props) => {
   )
 }
 
+
 const App = () => {
   const course = 'Half Stack application development'
 
