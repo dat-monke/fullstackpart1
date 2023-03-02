@@ -5,24 +5,11 @@ const Button = (props) => <button onClick={props.handleClick}>{props.text}</butt
 // const Display = (props) => <div>{props.response} {props.value}</div>
 
 const Statistics = (props) => {
-  if (!(props.average === 0)){
-    console.log(props.average)
-    // let sum = 0
-    // for (let i = 0; i < props.average.length; i++){
-    //   sum += props.average[i]
-    // }
-    // console.log(sum)
-  }
-  // if (!(props.positive = null)){
-  //   console.log(props.positive)
-  // }
+  
   return (
     <div>{props.response} {props.value}</div>
   )
 }
-  
-  
-
 
 const App = () => {
   // save clicks of each button to its own state
