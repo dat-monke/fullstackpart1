@@ -3,23 +3,38 @@ import { useState } from 'react'
 const Header = ({text}) => <h1>{text}</h1>
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 
-const Statistics = (props) => {
-  if (props.response === "average"){
+const StatisticLine = (props) => {
+  if (props.text === "average"){
     let avg = 0
-    avg = ((props.average[0] - props.average[2])/(props.average[0]+props.average[1]+props.average[2]))
+    avg = ((props.value[0] - props.value[2])/(props.value[0]+props.value[1]+props.value[2]))
     return (
-      <div>{props.response} {avg}</div>
+      <div>{props.text} {avg}</div>
     )
   }
-  if (props.response === "positive"){
+  if (props.text === "positive"){
     let posValue = 0
-    posValue = ((props.positive[0]/(props.positive[0]+props.positive[1]+props.positive[2]) * 100) + "%")
+    posValue = ((props.value[0]/(props.value[0]+props.value[1]+props.value[2]) * 100) + "%")
     return (
-      <div>{props.response} {posValue}</div>
+      <div>{props.text} {posValue}</div>
     )
   }
   return (
-    <div>{props.response} {props.value}</div>
+    <div>
+      {props.text} {props.value}
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  return (
+    <div>
+      <StatisticLine text="good" value ={props.goodValue} />
+      <StatisticLine text="neutral" value ={props.neutralValue} />
+      <StatisticLine text="bad" value ={props.bad} />
+      <StatisticLine text="all" value ={props.allValue} />
+      <StatisticLine text="average" value ={props.average} />
+      <StatisticLine text="positive" value ={props.positive} />
+    </div>
   )
 }
 
@@ -50,12 +65,7 @@ const App = () => {
       <Button handleClick={() => setNeutral(neutral + 1)} text="neutral" />
       <Button handleClick={() => setBad(bad + 1)} text="bad" />
       <Header text="statistics"/>
-      <Statistics response="good" value={good}/>
-      <Statistics response="neutral" value={neutral}/>
-      <Statistics response="bad" value={bad}/>
-      <Statistics response="all" value={good + neutral + bad}/> 
-      <Statistics response="average" average={[good, neutral, bad]}/>
-      <Statistics response="positive" positive={[good, neutral, bad]}/>
+      <Statistics goodValue={good} neutralValue={neutral} badValue={bad} allValue={good + neutral + bad} average={[good, neutral, bad]} positive={[good, neutral, bad]}/>
     </div>
   )
 }
