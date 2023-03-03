@@ -6,12 +6,12 @@ const Button = (props) => <button onClick={props.handleClick}>{props.text}</butt
 
 const Statistics = (props) => {
   if (props.average){
-    <div>{props.response} {props.value}</div>
+    let avg = 0
+    avg = ((props.average[0] - props.average[2])/(props.average[0]+props.average[1]+props.average[2]))
     return (
-      console.log(props.average),
-      console.log(props.average[0]),
-      console.log(props.average[1]),
-      console.log(props.average[2])
+      <div>{props.response} {avg}</div>,
+      console.log(props.average), 
+      console.log(avg)
     )
   }
   return (
@@ -39,7 +39,7 @@ const App = () => {
       <Statistics response="neutral" value={neutral}/>
       <Statistics response="bad" value={bad}/>
       <Statistics response="all" value={good + neutral + bad}/> 
-      <Statistics response="average" average={[good, neutral, bad]}/>
+      <Statistics response="average" average={[good, neutral, bad]} divisor={3}/>
       {/* <Display response="positive" positive={[good, neutral, bad]}/> */}
     </div>
   )
