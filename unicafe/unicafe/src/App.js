@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 const Header = ({text}) => <h1>{text}</h1>
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
-// const Display = (props) => <div>{props.response} {props.value}</div>
 
 const Statistics = (props) => {
   if (props.response === "average"){
@@ -23,9 +22,6 @@ const Statistics = (props) => {
     <div>{props.response} {props.value} {props.average}</div>
   )
 }
-  
-  
-
 
 const App = () => {
   // save clicks of each button to its own state
