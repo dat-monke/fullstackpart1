@@ -5,17 +5,22 @@ const Button = (props) => <button onClick={props.handleClick}>{props.text}</butt
 // const Display = (props) => <div>{props.response} {props.value}</div>
 
 const Statistics = (props) => {
-  if (props.average){
+  if (props.response === "average"){
     let avg = 0
     avg = ((props.average[0] - props.average[2])/(props.average[0]+props.average[1]+props.average[2]))
     return (
-      <div>{props.response} {avg}</div>,
-      console.log(props.average), 
-      console.log(avg)
+      <div>{props.response} {avg}</div>
+    )
+  }
+  if (props.response === "positive"){
+    let posValue = 0
+    posValue = ((props.positive[0]/(props.positive[0]+props.positive[1]+props.positive[2]) * 100) + "%")
+    return (
+      <div>{props.response} {posValue}</div>
     )
   }
   return (
-    <div>{props.response} {props.value}</div>
+    <div>{props.response} {props.value} {props.average}</div>
   )
 }
   
@@ -39,8 +44,8 @@ const App = () => {
       <Statistics response="neutral" value={neutral}/>
       <Statistics response="bad" value={bad}/>
       <Statistics response="all" value={good + neutral + bad}/> 
-      <Statistics response="average" average={[good, neutral, bad]} divisor={3}/>
-      {/* <Display response="positive" positive={[good, neutral, bad]}/> */}
+      <Statistics response="average" average={[good, neutral, bad]}/>
+      <Statistics response="positive" positive={[good, neutral, bad]}/>
     </div>
   )
 }
