@@ -19,7 +19,7 @@ const Statistics = (props) => {
     )
   }
   return (
-    <div>{props.response} {props.value} {props.average}</div>
+    <div>{props.response} {props.value}</div>
   )
 }
 
