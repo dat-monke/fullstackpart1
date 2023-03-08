@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
+const VoteDisplay = (props) => <div>has {props.votes} votes</div>
 
 const App = () => {
   const anecdotes = [
@@ -16,11 +17,15 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(0)
   let selection = Math.floor(Math.random() * 8)
-  
+
   return (
     <div>
       <Display anecdotes={anecdotes} selected={selected}/>
+      <VoteDisplay votes={votes}/> 
+      {console.log(votes)}
+      <Button handleClick={() => setVotes(votes + 1)} text="vote"/>
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
     </div>
   )
