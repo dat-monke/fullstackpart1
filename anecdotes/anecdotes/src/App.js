@@ -24,10 +24,11 @@ const App = () => {
   return (
     <div>
       <Display anecdotes={anecdotes} selected={selected}/>
-      <VoteDisplay votes={votes}/> 
+      <VoteDisplay votes={storageArray[selection]}/> 
       {console.log(storageArray)}
+      {console.log(selection)}
       {console.log(votes)}
-      <Button handleClick={() => setVotes(votes + 1)} text="vote"/>
+      <Button handleClick={() => setVotes(votes + 1)} text="vote" />
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
     </div>
   )
