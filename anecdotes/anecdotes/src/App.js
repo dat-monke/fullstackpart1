@@ -2,8 +2,11 @@ import { useState } from 'react'
 
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
-const VoteDisplay = (props) => <div>has {props.votes} votes</div>
+const VoteDisplay = (props) => 
+{
 
+  <div>has {props.votes} votes</div>
+}
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -17,17 +20,14 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState(0)
-  const storageArray = Array(anecdotes.length).fill(0)
+  const storageArray = [0,0,0,0,0,0,0,0]
+  const [votes, setVotes] = useState(storageArray)
   let selection = Math.floor(Math.random() * 8)
 
   return (
     <div>
       <Display anecdotes={anecdotes} selected={selected}/>
-      <VoteDisplay votes={storageArray[selection]}/> 
-      {console.log(storageArray)}
-      {console.log(selection)}
-      {console.log(votes)}
+      <VoteDisplay votes={votes} arrayID={selected}/>
       <Button handleClick={() => setVotes(votes + 1)} text="vote" />
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
     </div>
@@ -35,3 +35,22 @@ const App = () => {
 }
 
 export default App
+
+
+// const storageArray = [0,0,0,0,0,0,0,0]
+// console.log(storageArray.length)
+// console.log("Storage Array: " + storageArray)
+
+// const copy = [...storageArray]
+// console.log("Copy Array: " + copy)
+// copy[1] += 1 
+
+// const test = storageArray.map((arrayElements) => {
+//     if ((arrayElements) === storageArray[2]){
+//         return 1
+//     }
+// })
+// console.log(test)
+
+// console.log("Copy Array: " + copy)
+// console.log("Storage Array: " + storageArray)
