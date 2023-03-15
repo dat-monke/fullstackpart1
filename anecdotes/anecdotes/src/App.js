@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+const Header = (props) => <h2> {props.header} </h2>
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
 const VoteDisplay = (props) => <div>has {props.votes[props.arrayID]} votes</div>
@@ -24,6 +25,7 @@ const App = () => {
 
   return (
     <div>
+      <Header header="Anecdote of the day"/>
       <Display anecdotes={anecdotes} selected={selected}/>
       <VoteDisplay votes={votes} arrayID={selected}/>
       <Button handleClick={() => {
@@ -32,7 +34,8 @@ const App = () => {
         return setVotes(copyArray)
       }} text="vote" />
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
-      <MostVotes votes={votes} arrayID={selected}/>
+      <Header header="Anecdote with most votes"/>
+      {/* <Display anecdotes={anecdotes} selected={votes.max()}/> */}
     </div>
   )
 }
