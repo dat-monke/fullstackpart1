@@ -23,6 +23,8 @@ const App = () => {
   const [votes, setVotes] = useState(storageArray)
   let selection = Math.floor(Math.random() * 8)
 
+  // random stuff
+  
   return (
     <div>
       <Header header="Anecdote of the day"/>
