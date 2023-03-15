@@ -3,6 +3,7 @@ import { useState } from 'react'
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
 const VoteDisplay = (props) => <div>has {props.votes[props.arrayID]} votes</div>
+const MostVotes = (props) => <div>{props.arrayID}</div>
 
 const App = () => {
   const anecdotes = [
@@ -31,27 +32,9 @@ const App = () => {
         return setVotes(copyArray)
       }} text="vote" />
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
+      <MostVotes votes={votes} arrayID={selected}/>
     </div>
   )
 }
 
 export default App
-
-
-// const storageArray = [0,0,0,0,0,0,0,0]
-// console.log(storageArray.length)
-// console.log("Storage Array: " + storageArray)
-
-// const copy = [...storageArray]
-// console.log("Copy Array: " + copy)
-// copy[1] += 1 
-
-// const test = storageArray.map((arrayElements) => {
-//     if ((arrayElements) === storageArray[2]){
-//         return 1
-//     }
-// })
-// console.log(test)
-
-// console.log("Copy Array: " + copy)
-// console.log("Storage Array: " + storageArray)
