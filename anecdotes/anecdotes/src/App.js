@@ -4,7 +4,7 @@ const Header = (props) => <h2> {props.header} </h2>
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
 const VoteDisplay = (props) => <div>has {props.votes[props.arrayID]} votes</div>
-const MostVotes = (props) => <div>{props.arrayID}</div>
+const MostVotes = (props) => <div>{props.anecdotes[props.anecdoteIndex]}</div>
 
 const App = () => {
   const anecdotes = [
@@ -23,8 +23,6 @@ const App = () => {
   const [votes, setVotes] = useState(storageArray)
   let selection = Math.floor(Math.random() * 8)
 
-  // random stuff
-  
   return (
     <div>
       <Header header="Anecdote of the day"/>
@@ -36,8 +34,14 @@ const App = () => {
         return setVotes(copyArray)
       }} text="vote" />
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
+      {console.log(votes)}
+      {console.log(anecdotes[votes.indexOf(Math.max(...votes))])}
       <Header header="Anecdote with most votes"/>
-      {/* <Display anecdotes={anecdotes} selected={votes.max()}/> */}
+      <MostVotes anecdotes={anecdotes} selected={() => {
+        const anecdoteIndex = votes.indexOf(Math.max(...votes))
+        console.log(anecdoteIndex)
+        return anecdoteIndex
+      }}/>
     </div>
   )
 }
