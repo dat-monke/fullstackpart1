@@ -4,7 +4,7 @@ const Header = (props) => <h2> {props.header} </h2>
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
 const VoteDisplay = (props) => <div>has {props.votes[props.arrayID]} votes</div>
-const MostVotes = (props) => <div>{props.anecdotes[props.anecdoteIndex]}</div>
+const MostVotes = (props) => <div>{props.anecdotes[props.selected()]}</div>
 
 const App = () => {
   const anecdotes = [
@@ -39,9 +39,9 @@ const App = () => {
       <Header header="Anecdote with most votes"/>
       <MostVotes anecdotes={anecdotes} selected={() => {
         const anecdoteIndex = votes.indexOf(Math.max(...votes))
-        console.log(anecdoteIndex)
         return anecdoteIndex
       }}/>
+      <VoteDisplay vote={votes} arrayID={votes.indexOf(Math.max(...votes))}/>
     </div>
   )
 }
