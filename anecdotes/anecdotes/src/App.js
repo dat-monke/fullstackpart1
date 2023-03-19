@@ -4,6 +4,7 @@ const Header = (props) => <h2> {props.header} </h2>
 const Button = (props) => <button onClick={props.handleClick}>{props.text}</button>
 const Display = (anecdotes) => <div>{anecdotes.anecdotes[anecdotes.selected]}</div>
 const VoteDisplay = (props) => <div>has {props.votes[props.arrayID]} votes</div>
+const HighestVotes = (props) => <div>has {props.arrayID()} votes</div>
 const MostVotes = (props) => <div>{props.anecdotes[props.selected()]}</div>
 
 const App = () => {
@@ -34,16 +35,15 @@ const App = () => {
         return setVotes(copyArray)
       }} text="vote" />
       <Button handleClick={() => setSelected(selection)} text="next anecdote"/>
-      {console.log(votes)}
-      {console.log(anecdotes[votes.indexOf(Math.max(...votes))])}
       <Header header="Anecdote with most votes"/>
       <MostVotes anecdotes={anecdotes} selected={() => {
         const anecdoteIndex = votes.indexOf(Math.max(...votes))
         return anecdoteIndex
       }}/>
-      <VoteDisplay vote={votes} arrayID={votes.indexOf(Math.max(...votes))}/>
+      <HighestVotes arrayID={() => {
+        return Math.max(...votes)
+      }} />
     </div>
   )
 }
-
 export default App
